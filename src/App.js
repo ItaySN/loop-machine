@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Loop from './Loop';
 import allLoops from './loops.json';
@@ -25,12 +24,15 @@ const useStyles = makeStyles({
     height:'3vh'
   },
   mainDiv: {
-    height: "100vh",
+    minHeight:'100vh',
+    height: "100%",
     width: "100%",
     marginBottom: 0,
     alignItems: "center",
     textAlign: "center",
-    background: '#90a4ae',
+    backgroundColor: '#74EBD5',
+    backgroundImage: 'linear-gradient(23deg, #74EBD5 0%, #9FACE6 100%)',
+    // backgroundImage: '#90a4ae',
     display: "flex",
     flexDirection: "column",
   },
@@ -56,7 +58,7 @@ function App() {
       const activeLoop = activeLoops[0];
       let delay = 8000 - activeLoops[0].currentTime * 1000;
       setTimeout(() => {
-        if(activeLoops[0]?.src == activeLoop?.src){
+        if(activeLoops[0]?.src === activeLoop?.src){
           let newLoop = new Audio(path);
           newLoop.load();
           newLoop.play();
