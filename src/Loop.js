@@ -40,53 +40,55 @@ const useStyles = makeStyles({
 });
 
 function Loop({name,turnOn,turnOff,path,activeLoops}) {
-    const [isTurnOn,setIsTurnOn] = useState(false);
-    const classes = useStyles();
+  const [isTurnOn, setIsTurnOn] = useState(false);
+  const classes = useStyles();
 
-    const handleChange = () =>{
-      if(isTurnOn)
-      {
-          setIsTurnOn(false);
-          turnOff(path);
-      }
-      else{
-          setIsTurnOn(true);
-          turnOn(path);
-      }  
+  //Change the state according to the user's choice
+  const handleChange = () => {
+    if (isTurnOn) {
+      setIsTurnOn(false);
+      turnOff(path);
+    } else {
+      setIsTurnOn(true);
+      turnOn(path);
     }
+  };
 
-    useEffect(() => {
-        if(activeLoops.length === 0){
-            setIsTurnOn(false);
-        }
-    }, [activeLoops.length]);
-    return (
-      <>
-        {
-            isTurnOn ? (
-            <div className={classes.oneLoopTurenOn}>
-            {<h3>{name}</h3>}
-              <div className={classes.buttonsDiv}>
-                <Button onClick={handleChange} disabled>
-                  Turn On <MusicNoteIcon/>
-                </Button>
-                <Button onClick={handleChange}>Turn Off <MusicOffIcon/></Button>{" "}
-              </div> 
+  useEffect(() => {
+    if (activeLoops.length === 0) {
+      setIsTurnOn(false);
+    }
+  }, [activeLoops.length]);
+
+  return (
+    <>
+      {isTurnOn ? (
+        <div className={classes.oneLoopTurenOn}>
+          {<h3>{name}</h3>}
+          <div className={classes.buttonsDiv}>
+            <Button onClick={handleChange} disabled>
+              Turn On <MusicNoteIcon />
+            </Button>
+            <Button onClick={handleChange}>
+              Turn Off <MusicOffIcon />
+            </Button>{" "}
           </div>
-            ) : (
-                <div className={classes.oneLoopTurendOff}>
-            {<h3>{name}</h3>}
-              <div className={classes.buttonsDiv}>
-                <Button onClick={handleChange}>Turn On <MusicNoteIcon/></Button>
-                <Button onClick={handleChange} disabled>
-                  Turn Off <MusicOffIcon/>
-                </Button>{" "}
-              </div>
+        </div>
+      ) : (
+        <div className={classes.oneLoopTurendOff}>
+          {<h3>{name}</h3>}
+          <div className={classes.buttonsDiv}>
+            <Button onClick={handleChange}>
+              Turn On <MusicNoteIcon />
+            </Button>
+            <Button onClick={handleChange} disabled>
+              Turn Off <MusicOffIcon />
+            </Button>{" "}
           </div>
-            )
-        }
-      </>
-    );
+        </div>
+      )}
+    </>
+  );
 }
 
 export default Loop

@@ -46,16 +46,15 @@ const useStyles = makeStyles({
 });
 
 function App() {
-  
-  const classes = useStyles()
-  const [activeLoops,setActiveLoops] = useState([]);
-  const [isPlaying,setIsPlaying] = useState(false);
-  
-  const turnOn = (path) =>{
-    if(isPlaying)
-    {
-      let delay = 8000 - activeLoops[0].currentTime * 1000
-      setTimeout(()=>{
+  const classes = useStyles();
+  const [activeLoops, setActiveLoops] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  //Run the loop at the right moment if there is a loop playing
+  const turnOn = (path) => {
+    if (isPlaying) {
+      let delay = 8000 - activeLoops[0].currentTime * 1000;
+      setTimeout(() => {
         let newLoop = new Audio(path);
         newLoop.load();
         newLoop.play();
@@ -63,23 +62,22 @@ function App() {
         let temp = activeLoops.slice();
         temp.push(newLoop);
         setActiveLoops(temp);
-      },delay)
-    }
-    else{
+      }, delay);
+    } else {
       let newLoop = new Audio(path);
       let temp = activeLoops.slice();
       temp.push(newLoop);
       setActiveLoops(temp);
     }
-  }
+  };
 
+  //Stop the selected loop immediately
   const turnOff = (path) => {
     let index = activeLoops.findIndex((audio) => {
-      if(audio.src.includes('localhost')){
+      if (audio.src.includes("localhost")) {
         return "." + audio.src.slice(21) === path;
-      }
-      else{
-        return "." + audio.src.slice(37) === path; 
+      } else {
+        return "." + audio.src.slice(37) === path;
       }
     });
     if (index !== -1) {
@@ -95,22 +93,24 @@ function App() {
     }
   };
 
+  //Start to play the selected loops for the first time
   const playLoops = () => {
-    if(!isPlaying){
+    if (!isPlaying) {
       setIsPlaying(true);
       activeLoops.forEach((loop) => {
         loop.play();
         loop.loop = true;
       });
     }
-  }
+  };
 
+  //Stop all the loops immediately
   const stopLoops = () => {
-    setIsPlaying(false)
-    activeLoops.forEach(loop =>{
-        loop.pause();
-        loop.currentTime = 0;
-      })
+    setIsPlaying(false);
+    activeLoops.forEach((loop) => {
+      loop.pause();
+      loop.currentTime = 0;
+    });
     setActiveLoops([]);
   };
 
