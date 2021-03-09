@@ -145,7 +145,7 @@ function App() {
         )}
       </div>
       <div className={classes.activeLoopsDiv}>
-        {activeLoops.length === 0 && <h3>There is no loops at the list</h3>}
+        {activeLoops.length === 0 && <h3>Choose a loop</h3>}
       </div>
       <div className={classes.loopsDiv}>
         {allLoops.map((loop) => {
