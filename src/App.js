@@ -74,16 +74,22 @@ function App() {
   }
 
   const turnOff = (path) => {
-    if (activeLoops.length === 1) {
-      setActiveLoops([]);
-      setIsPlaying(false);
-    }
+    console.log(path);
     let index = activeLoops.findIndex((audio) => {
-      return "." + audio.src.slice(21) === path;
+      if(audio.src.includes('localhost')){
+        return "." + audio.src.slice(21) === path;
+      }
+      else{
+        return "." + audio.src.slice(37) === path; 
+      }
     });
     if (index !== -1) {
       activeLoops[index].pause();
       activeLoops[index].currentTime = 0;
+      if (activeLoops.length === 1) {
+        setActiveLoops([]);
+        setIsPlaying(false);
+      }
       let before = activeLoops.slice(0, index);
       let after = activeLoops.slice(index + 1);
       setActiveLoops(before.concat(after));

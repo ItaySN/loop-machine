@@ -43,7 +43,6 @@ const useStyles = makeStyles({
 function Loop({name,turnOn,turnOff,path,activeLoops}) {
     const [isTurnOn,setIsTurnOn] = useState(false);
     const classes = useStyles();
-    const audio = new Audio(path)
 
     const handleChange = () =>{
       if(isTurnOn)
