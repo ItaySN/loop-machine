@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     height: "20vh",
     width: "28%",
     backgroundImage: "radial-gradient(#ff1744, #9b0000);",
-    // backgroundColor: "#c1d5e0",
     margin: "5px",
     marginLeft: "auto",
     marginRight: "auto",
@@ -83,7 +82,6 @@ function Loop({name,turnOn,turnOff,path,activeLoops}) {
                   Turn Off <MusicOffIcon/>
                 </Button>{" "}
               </div>
-            <div>{console.log(isTurnOn)}</div>
           </div>
             )
         }

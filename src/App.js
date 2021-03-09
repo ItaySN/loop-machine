@@ -54,7 +54,7 @@ function App() {
   const turnOn = (path) =>{
     if(isPlaying)
     {
-      let deley = 8000 - activeLoops[0].currentTime * 1000
+      let delay = 8000 - activeLoops[0].currentTime * 1000
       setTimeout(()=>{
         let newLoop = new Audio(path);
         newLoop.load();
@@ -63,7 +63,7 @@ function App() {
         let temp = activeLoops.slice();
         temp.push(newLoop);
         setActiveLoops(temp);
-      },deley)
+      },delay)
     }
     else{
       let newLoop = new Audio(path);
@@ -74,7 +74,6 @@ function App() {
   }
 
   const turnOff = (path) => {
-    console.log(path);
     let index = activeLoops.findIndex((audio) => {
       if(audio.src.includes('localhost')){
         return "." + audio.src.slice(21) === path;
