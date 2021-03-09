@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/loop-machine/static/css/main.563987cf.chunk.css",
-    "main.js": "/loop-machine/static/js/main.3eee45ac.chunk.js",
-    "main.js.map": "/loop-machine/static/js/main.3eee45ac.chunk.js.map",
+    "main.js": "/loop-machine/static/js/main.eab3e04b.chunk.js",
+    "main.js.map": "/loop-machine/static/js/main.eab3e04b.chunk.js.map",
     "runtime-main.js": "/loop-machine/static/js/runtime-main.f235ceb1.js",
     "runtime-main.js.map": "/loop-machine/static/js/runtime-main.f235ceb1.js.map",
     "static/js/2.5aa6a101.chunk.js": "/loop-machine/static/js/2.5aa6a101.chunk.js",
@@ -13,13 +13,12 @@
     "service-worker.js": "/loop-machine/service-worker.js",
     "service-worker.js.map": "/loop-machine/service-worker.js.map",
     "static/css/main.563987cf.chunk.css.map": "/loop-machine/static/css/main.563987cf.chunk.css.map",
-    "static/js/2.5aa6a101.chunk.js.LICENSE.txt": "/loop-machine/static/js/2.5aa6a101.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/loop-machine/static/media/logo.6ce24c58.svg"
+    "static/js/2.5aa6a101.chunk.js.LICENSE.txt": "/loop-machine/static/js/2.5aa6a101.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f235ceb1.js",
     "static/js/2.5aa6a101.chunk.js",
     "static/css/main.563987cf.chunk.css",
-    "static/js/main.3eee45ac.chunk.js"
+    "static/js/main.eab3e04b.chunk.js"
   ]
 }
