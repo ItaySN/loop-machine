@@ -31,7 +31,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     textAlign: "center",
     background: '#90a4ae',
-    // background: "#bbdefb",
     display: "flex",
     flexDirection: "column",
   },
@@ -45,6 +44,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 function App() {
   const classes = useStyles();
   const [activeLoops, setActiveLoops] = useState([]);
@@ -53,15 +53,19 @@ function App() {
   //Run the loop at the right moment if there is a loop playing
   const turnOn = (path) => {
     if (isPlaying) {
+      const activeLoop = activeLoops[0];
       let delay = 8000 - activeLoops[0].currentTime * 1000;
       setTimeout(() => {
-        let newLoop = new Audio(path);
-        newLoop.load();
-        newLoop.play();
-        newLoop.loop = true;
-        let temp = activeLoops.slice();
-        temp.push(newLoop);
-        setActiveLoops(temp);
+        if(activeLoops[0]?.src == activeLoop?.src){
+          let newLoop = new Audio(path);
+          newLoop.load();
+          newLoop.play();
+          newLoop.loop = true;
+          let temp = activeLoops.slice();
+          temp.push(newLoop);
+          setActiveLoops(temp);
+        }
+        return;
       }, delay);
     } else {
       let newLoop = new Audio(path);
@@ -73,23 +77,20 @@ function App() {
 
   //Stop the selected loop immediately
   const turnOff = (path) => {
+    const { href: currentUrl } = window.location;
     let index = activeLoops.findIndex((audio) => {
-      if (audio.src.includes("localhost")) {
-        return "." + audio.src.slice(21) === path;
-      } else {
-        return "." + audio.src.slice(37) === path;
-      }
+      return "./" + audio.src.split(currentUrl)[1] === path
     });
     if (index !== -1) {
       activeLoops[index].pause();
       activeLoops[index].currentTime = 0;
       if (activeLoops.length === 1) {
-        setActiveLoops([]);
         setIsPlaying(false);
       }
-      let before = activeLoops.slice(0, index);
-      let after = activeLoops.slice(index + 1);
-      setActiveLoops(before.concat(after));
+      setActiveLoops((prev)=>{
+        prev.splice(index,1);
+        return prev;
+      })
     }
   };
 
